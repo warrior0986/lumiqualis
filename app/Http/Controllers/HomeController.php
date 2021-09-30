@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\GiphyService;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,13 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request, $query)
     {
-        //
-        dd($query);
+        $giphyResult = $this->getGiphyResult($query);
+    }
+
+    public function getGiphyResult($query)
+    {
+        $giphyService = new GiphyService();
+        $giphyResult = $giphyService->search($query);
+        return $giphyResult;
     }
 }
