@@ -33,6 +33,7 @@ return [
         'url' => 'api.giphy.com/v1/gifs/search',
         'parameters' => [
             'api_key' => 'uGiu2rL7eUJ2zOvPMPila30ycl6LQEtQ',
+            'limit' => '1'
         ],
     ],
     'tmdb' => [

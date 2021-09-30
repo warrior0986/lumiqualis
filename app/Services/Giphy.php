@@ -14,12 +14,13 @@ class GiphyService
     {
         $this->url = config('services.giphy.url');
         $this->api_key = config('services.giphy.parameters.api_key');
-        $this->uri = $this->url . "?api_key=" . $this->api_key . "&q=";
+        $uriParams = http_build_query(config('services.giphy.parameters'));
+        $this->uri = $this->url . "?" . $uriParams . "&q=";
     }
 
     public function search($query)
     {
-        $response = Http::get($this->uri . "'" . $query . "'&limit=1");
+        $response = Http::get($this->uri . "'" . $query . "'");
         $results = json_decode($response->body());
         return $results->data[0]->url ?? '';
 
