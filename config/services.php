@@ -39,6 +39,9 @@ return [
         'url' => 'https://api.themoviedb.org/3/search/movie',
         'parameters' => [
             'api_key' => '437005f01389254e6289bd5862af018b',
+            'language' => 'en-US',
+            'page' => '1',
+            'include_adult' => 'false'
         ],
     ],
     'nasa' => [
