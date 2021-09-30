@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\GiphyService;
 use App\Services\TmdbService;
+use App\Services\NasaService;
 
 class HomeController extends Controller
 {
@@ -18,6 +19,8 @@ class HomeController extends Controller
     {
         $giphyResult = $this->getGiphyResult($query);
         $tmdbResult = $this->getTmdbResult($query);
+        $nasaResult = $this->getNasaResult();
+        dd($nasaResult);
     }
 
     public function getGiphyResult($query)
@@ -32,5 +35,12 @@ class HomeController extends Controller
         $tmdbService = new TmdbService();
         $tmdbResult = $tmdbService->search($query);
         return $tmdbResult;
+    }
+
+    public function getNasaResult()
+    {
+        $nasa = new NasaService();
+        $nasaResult = $nasa->search();
+        return $nasaResult;
     }
 }
