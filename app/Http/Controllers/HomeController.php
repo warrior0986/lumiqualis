@@ -20,7 +20,8 @@ class HomeController extends Controller
         $giphyResult = $this->getGiphyResult($query);
         $tmdbResult = $this->getTmdbResult($query);
         $nasaResult = $this->getNasaResult();
-        dd($nasaResult);
+        $response = $this->prepareResponse($giphyResult, $tmdbResult, $nasaResult);
+        return response()->json($response);
     }
 
     public function getGiphyResult($query)
@@ -42,5 +43,21 @@ class HomeController extends Controller
         $nasa = new NasaService();
         $nasaResult = $nasa->search();
         return $nasaResult;
+    }
+
+    public function prepareResponse($giphyResult, $tmdbResult, $nasaResult)
+    {
+        $response = config('response-structure');
+        $response["copyright"] = $nasaResult->copyright;
+        $response["date"] = $nasaResult->date;
+        $response["explanation"] = $nasaResult->explanation;
+        $response["media_type"] = $nasaResult->media_type;
+        $response["service_version"] = $nasaResult->service_version;
+        $response["nasa_image_title"] = $nasaResult->title;
+        $response["nasa_image_url"] = $nasaResult->url;
+
+        $response["imdb"] = $tmdbResult; //the json structure in mail says imdb, but i think is tmdb
+        $response["giphy"]["image"] = $giphyResult;
+        return $response;
     }
 }
