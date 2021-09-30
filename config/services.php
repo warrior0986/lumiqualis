@@ -29,5 +29,22 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'giphy' => [
+        'url' => 'api.giphy.com/v1/gifs/search',
+        'parameters' => [
+            'api_key' => 'uGiu2rL7eUJ2zOvPMPila30ycl6LQEtQ',
+        ],
+    ],
+    'tmdb' => [
+        'url' => 'https://api.themoviedb.org/3/search/movie',
+        'parameters' => [
+            'api_key' => '437005f01389254e6289bd5862af018b',
+        ],
+    ],
+    'nasa' => [
+        'url' => 'https://api.nasa.gov/planetary/apod',
+        'parameters' => [
+            'api_key' => '0byjluNJagV0HiBo8u3LA5m12gcriGWYnYtUqs1L',
+        ],
+    ],
 ];
